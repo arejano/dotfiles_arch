@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+#MENU="$(rofi -sep "|" -dmenu -i -p 'System' -location 5 -xoffset -14 -yoffset -52 -width 10 -hide-scrollbar -line-padding 4 -padding 20 -lines 4 <<< " Lock| Logout| Reboot| Shutdown")"
+MENU="$(rofi -sep "|" -dmenu -i -p 'Monitor' -width 10 -hide-scrollbar -line-padding 4 -padding 5 -lines 6 -theme oxide <<< "Monitor_Principal|Monitor_Externo|Desligar_Principal|Desligar_HDMI|Ligar_Principal|Ligar_HDMI")"
+            case "$MENU" in
+                *Monitor_Principal) xrandr --output eDP1 --auto;;
+                *Monitor_Externo) xrandr --output HDMI1 --auto;;
+                *Desligar_Principal) xrandr --output eDP1 --off;;
+                *Desligar_HDMI) notify-send 'Desligando o Monitor HDMI';;
+                *Ligar_Principal) xrandr --output eDP1 --on;;
+                *Ligar_HDMI) notify-send 'Desligando o Monitor HDMI';;
+            esac

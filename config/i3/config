@@ -1,0 +1,185 @@
+#============================= Launch settings ===============================#
+exec_always --no-startup-id bash ~/.config/polybar/launch.sh
+#exec_always --no-startup-id bash ~/.config/polybar/launch2.sh
+#exec_always --no-startup-id feh --bg-fill --randomize /home/enindu/Pictures/Wallpapers/Linux
+#exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom --config /home/arejano/.config/picom/picom.conf --no-fading-openclose
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id dunst
+
+#=============================================================================#
+set_from_resource $fg foreground
+set_from_resource $bg background
+
+# Set mod key
+set $mod Mod4
+set $alt Mod1
+set $ctrl Mod2
+
+set $term termite
+set $thick 16
+
+# Set window title font
+font pango:Consolas 8
+
+# Align window title
+title_align center
+
+# Window rules
+for_window [class="^.*"] border pixel 0
+for_window [title="Library"] floating enable
+for_window [class="FXTerm"] floating enable
+
+for_window [class="FloatingTermite"] floating enable sticky enable border pixel 2 resize set 500 600
+for_window [class="Min"] floating enable border pixel 3 resize set 700 900
+for_window [class="Chromium"] inner 0
+
+smart_gaps on
+
+# Open applications with RULES
+bindsym $mod+Shift+t exec kitty  --class FXTerm
+bindsym $mod+t exec termite --class FloatingTermite
+bindsym $mod+m exec min --class Min
+
+#Define aplicações por Workspaces
+assign [class="Thunderbird"] $ws5
+assign [class="Chromium"] $ws2
+assign [class="Station"] $ws3
+assign [class="Telegram"] $ws3
+assign [class="Spotify Free"] $ws4
+
+for_window [class="st"] floating enable
+
+# Define gaps between windows
+gaps inner 5
+gaps outer 5
+
+bindsym $mod+z		gaps outer current plus 5
+bindsym $mod+Shift+z	gaps outer current minus 5
+
+# Drag floating windows (Mouse + $mod)
+floating_modifier $mod
+
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Media volume controls
+bindsym XF86AudioMute exec amixer sset 'Master' toggle
+bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%-
+bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+
+bindsym $mod+F1 exec playerctl play-pause
+bindsym $mod+F2 exec playerctl previous
+bindsym $mod+F3 exec playerctl next
+
+
+# Open applications
+bindsym $mod+Return exec $term --class oterm
+bindsym $mod+g exec konsole
+bindsym $mod+space exec rofi -location -theme oxide -show drun 
+bindsym Control+space exec rofi -location -theme oxide -show drun 
+bindsym $mod+Print exec scrot -q 100 "/home/arejano/Screenshots/%Y-%m-%d-%s-screenshot.png"
+#bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -theme oxide -width 30  -lines 0 -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
+bindsym $alt+l exec lockar.sh 
+bindsym $mod+p exec --no-startup-id "~/.config/rofi/scripts/select_display"
+bindsym $alt+Tab exec rofi -location -show window -theme oxide
+#bindsym $mod+s exec rofi -location -show ssh -theme oxide
+#
+bindsym $mod+a exec skippy-xd
+bindsym $mod+s exec ~/.config/rofi/scripts/configuracoes.sh
+
+#bindsym $mod+a focus parent
+
+
+# Change window focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split window in horizontal
+bindsym $alt+h split h
+
+# Split window in vertical
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused window
+bindsym $mod+f fullscreen toggle
+
+# Change window layout (Stacked, tabbed or toggle split)
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Change focus between tiling and floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# Focus the parent container
+
+# Focus the child container
+#bindsym $mod+d focus child
+
+# Set names for workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Encerrar i3-wm.' -B 'Yes, exit i3' 'i3-msg exit'"
+#
+# Restart i3 session inplace
+bindsym $mod+Shift+r restart
+
+# Resize window
+mode "resize" {
+	bindsym $mod+h resize shrink width 10 px or 10 ppt
+	bindsym $mod+j resize grow height 10 px or 10 ppt
+	bindsym $mod+k resize shrink height 10 px or 10 ppt
+	bindsym $mod+l resize grow width 10 px or 10 ppt
+
+	# Reset window size to normal
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+r mode "default"
+}
+
+# Enter resize mode
+bindsym $mod+r mode "resize"
+
+# Customize colors
+client.focused          #FFFFFF #181818 #4C7899
+client.focused_inactive #1C2023 #181818 #fdf6e3
+client.unfocused        #1C2023 #181818 #fdf6e3
+client.urgent           #dc322f #dc322f #fdf6e3
+
+

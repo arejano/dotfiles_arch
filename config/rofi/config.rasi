@@ -1,0 +1,11 @@
+/** Configured For Applets **/
+
+configuration {
+  modi: "window,run,ssh";
+  show-icons:         false;
+  /*icon-theme:         "Papirus";*/
+  font: "Fira Code 10";
+  /*width: 40;*/
+  /*lines:5;*/
+  ml-row-down: "ScrollDown";
+}
