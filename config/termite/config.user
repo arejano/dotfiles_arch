@@ -4,7 +4,7 @@ allow_bold = true
 #bold_is_bright = true
 clickable_url = true
 #dynamic_title = true
-font = Fira Code 9
+Font = Fira Code 9
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -45,6 +45,7 @@ foreground      = #c5c8c6
 foreground_bold = #c5c8c6
 cursor          = #c5c8c6
 background      = rgba(28,24,28,0.9)
+#background      = rgba(24,24,24,1.9)
 
 # black
 color0  = #282a2e

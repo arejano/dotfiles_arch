@@ -75,8 +75,7 @@ bindsym $mod+F3 exec playerctl next
 
 # Open applications
 bindsym $mod+Return exec $term --class oterm
-bindsym $mod+g exec konsole
-bindsym $mod+space exec rofi -location -theme oxide -show drun 
+bindsym $mod+space exec rofi -width 30 -theme oxide -show drun 
 bindsym Control+space exec rofi -location -theme oxide -show drun 
 bindsym $mod+Print exec scrot -q 100 "/home/arejano/Screenshots/%Y-%m-%d-%s-screenshot.png"
 #bindsym $mod+d exec rofi -show run

@@ -46,11 +46,13 @@ border-color = #10000000
 
 padding-left = 0
 padding-right = 0 0
+separator = 
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 2
+module-margin-right = 2
 
-font-0 = "Fira Code:size=9;1"
+;font-0 = "Fira Code:size=9;1"
+font-0 = "Noto Sans:size=8;1"
 font-1 = "Fira Code:size=9;1"
 font-2 = "Fira Code:size=9;1"
 ;font-0 = "Source Code Pro:size=9;1" 
@@ -61,8 +63,8 @@ font-4 = Weather Icons:size=9;3
 
 modules-left = launcher workspaces title
 ;modules-center = playpause playerprevious playernext spotify 
-modules-center = spotify 
-modules-right = weather battery wlan cpu-arkk  memory pulseaudio date sysmenu
+modules-center = date 
+modules-right = spotify weather battery wlan cpu-arkk  memory pulseaudio notifications sysmenu
 
 tray-position = none
 ;tray-padding = 1
@@ -132,7 +134,6 @@ click-left = ~/.config/i3/scripts/tablet_mode/animate_bar
 type = custom/script
 exec = ~/.config/polybar/openweathermap.sh
 interval = 600
-label-font = 4
 ;label-foreground = ${colors.foreground-label}
 ;label-background = ${colors.background}
 ;label-underline = ${colors.background}
@@ -289,7 +290,8 @@ interval = 3
 ;   <ramp-swap-used>
 ;   <ramp-swap-free>
 format = <label>
-format-prefix = 
+/*format-prefix = */
+format-prefix = 
 ; Available tokens:
 ;   %percentage_used% (default)
 ;   %percentage_free%
@@ -308,8 +310,7 @@ format-prefix = 
 ;   %gb_swap_free%
 ;   %gb_swap_used%
 
-label = " %mb_used%"
-
+label = "%mb_used%"
 ; Only applies if <bar-used> is used
 ;;bar-used-indicator =
 ;;bar-used-width = 50
@@ -343,9 +344,10 @@ type = internal/xwindow
 ; Available tags:
 ;   <label> (default)
 format = <label>
+/*format-prefix = */
 ;;format-background = ${color.bg}
 ;;format-foreground = ${color.ac}
-;;format-padding = 4
+format-padding = 3
 
 ; Available tokens:
 ;   %title%
@@ -928,7 +930,7 @@ animation-charging-framerate = 750
 ;
 ; Available tokens:
 ;   None
-;label-monocle = 
+;label-monocle = 
 ;label-tiled = 
 ;label-fullscreen = 
 ;label-floating = 
@@ -952,7 +954,7 @@ type = internal/cpu
 /*format-underline = #22ffffff*/
 
 ; Seconds to sleep between updates
-; Default: 1
+ Default: 10
 interval = 0.5
 
 ; Available tags:
@@ -988,9 +990,18 @@ label = " %percentage%%"
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 
-[module/window_switch]
+
+[module/notifications]
 type = custom/text
 content =  
+
+[module/search]
+type = custom/text
+/*content = */
+content =  
+
+[module/window_switch]
+type = custom/text
 
 ; "content" has the same properties as "format-NAME"
 ;;content-background = #000
